@@ -1,4 +1,5 @@
 import { Entity, Column, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { ProductCategoryMapping } from './index';
 
@@ -20,5 +21,5 @@ export class ProductCategory extends CustomBaseEntity {
     meta!: any;
 
     @OneToMany(() => ProductCategoryMapping, mapping => mapping.category)
-    productCategoryMappings!: ProductCategoryMapping[];
+    productCategoryMappings!: Relation<ProductCategoryMapping>[];
 }

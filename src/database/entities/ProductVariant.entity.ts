@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Product, VariantAttribute } from './index';
 
@@ -23,8 +24,8 @@ export class ProductVariant extends CustomBaseEntity {
     meta!: any;
 
     @ManyToOne(() => Product, product => product.productVariants)
-    product!: Product;
+    product!: Relation<Product>;
 
     @OneToMany(() => VariantAttribute, variantAttribute => variantAttribute.variant)
-    variantAttributes!: VariantAttribute[];
+    variantAttributes!: Relation<VariantAttribute>[];
 }

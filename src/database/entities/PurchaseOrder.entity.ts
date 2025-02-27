@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Supplier, User, PurchaseOrderItem } from './index';
 
@@ -20,11 +21,11 @@ export class PurchaseOrder extends CustomBaseEntity {
     meta!: any;
 
     @ManyToOne(() => Supplier, supplier => supplier.purchaseOrders)
-    supplier!: Supplier;
+    supplier!: Relation<Supplier>;
 
     @ManyToOne(() => User, user => user.purchaseOrders)
-    createdBy!: User;
+    createdBy!: Relation<User>;
 
     @OneToMany(() => PurchaseOrderItem, purchaseOrderItem => purchaseOrderItem.purchaseOrder)
-    purchaseOrderItems!: PurchaseOrderItem[];
+    purchaseOrderItems!: Relation<PurchaseOrderItem>[];
 }

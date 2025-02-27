@@ -1,4 +1,5 @@
 import { Entity, Column, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Employee, RoleAction, User } from './index';
 
@@ -16,18 +17,12 @@ export class Role extends CustomBaseEntity {
   @Column({ type: 'jsonb', nullable: true })
   meta!: object;
 
-  @OneToMany(() => Employee, (employee) => employee.role, {
-    createForeignKeyConstraints: false,
-  })
-  employees!: Employee[];
+  @OneToMany(() => Employee, (employee) => employee.role)
+  employees!: Relation<Employee>[];
 
-  @OneToMany(() => RoleAction, (roleAction) => roleAction.role, {
-    createForeignKeyConstraints: false,
-  })
-  roleActions!: RoleAction[];
+  @OneToMany(() => RoleAction, (roleAction) => roleAction.role)
+  roleActions!: Relation<RoleAction>[];
 
-  @OneToMany(() => User, (user) => user.role, {
-    createForeignKeyConstraints: false,
-  })
-  users!: User[];
+  @OneToMany(() => User, (user) => user.role)
+  users!: Relation<User>[];
 }

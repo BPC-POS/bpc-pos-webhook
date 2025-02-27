@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Member } from './index';
 
@@ -14,5 +15,5 @@ export class LoyaltyPoint extends CustomBaseEntity {
     lifetime_points!: number;
 
     @ManyToOne(() => Member, member => member.loyaltyPoints)
-    member!: Member;
+    member!: Relation<Member>;
 }

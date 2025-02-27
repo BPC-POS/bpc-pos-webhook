@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Member } from './Member.entity';
 
@@ -20,5 +21,5 @@ export class MediaFile extends CustomBaseEntity {
     meta!: any;
 
     @ManyToOne(() => Member, member => member.mediaFiles)
-    member!: Member;
+    member!: Relation<Member>;
 }

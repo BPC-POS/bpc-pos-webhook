@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { RbacModule, RoleAction } from './index';
 
@@ -23,8 +24,8 @@ export class RbacAction extends CustomBaseEntity {
   meta!: object;
 
   @ManyToOne(() => RbacModule, rbacModule => rbacModule.rbacActions)
-  rbacModule!: RbacModule;
+  rbacModule!: Relation<RbacModule>;
 
   @OneToMany(() => RoleAction, roleAction => roleAction.rbacAction)
-  roleActions!: RoleAction[];
+  roleActions!: Relation<RoleAction>[];
 }

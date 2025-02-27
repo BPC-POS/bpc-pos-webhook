@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Member, Order } from './index';
 
@@ -20,8 +21,8 @@ export class LoyaltyTransaction extends CustomBaseEntity {
     transaction_type!: string;
 
     @ManyToOne(() => Member, member => member.loyaltyTransactions)
-    member!: Member;
+    member!: Relation<Member>;
 
     @ManyToOne(() => Order, order => order.loyaltyTransactions)
-    order!: Order;
+    order!: Relation<Order>;
 }

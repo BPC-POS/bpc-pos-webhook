@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Product } from './index';
 
@@ -16,8 +17,6 @@ export class Inventory extends CustomBaseEntity {
   @Column('jsonb', { nullable: true })
   meta!: any;
 
-  @ManyToOne(() => Product, (product) => product.inventory, {
-    createForeignKeyConstraints: false,
-  })
-  product!: Product;
+  @ManyToOne(() => Product, (product) => product.inventory)
+  product!: Relation<Product>;
 }

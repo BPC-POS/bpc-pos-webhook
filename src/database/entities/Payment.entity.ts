@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Order } from './index';
 
@@ -20,5 +21,5 @@ export class Payment extends CustomBaseEntity {
     meta!: any;
 
     @ManyToOne(() => Order, order => order.payments)
-    order!: Order;
+    order!: Relation<Order>;
 }

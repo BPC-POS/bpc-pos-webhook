@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Product, ProductCategory } from './index';
 
@@ -11,8 +12,8 @@ export class ProductCategoryMapping extends CustomBaseEntity {
     category_id!: number;
 
     @ManyToOne(() => Product, product => product.productCategoryMappings)
-    product!: Product;
+    product!: Relation<Product>;
 
     @ManyToOne(() => ProductCategory, category => category.productCategoryMappings)
-    category!: ProductCategory;
+    category!: Relation<ProductCategory>;
 }

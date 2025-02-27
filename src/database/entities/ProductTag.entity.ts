@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Product, Tag } from './index';
 
@@ -11,8 +12,8 @@ export class ProductTag extends CustomBaseEntity {
     tag_id!: number;
 
     @ManyToOne(() => Product, product => product.productTags)
-    product!: Product;
+    product!: Relation<Product>;
 
     @ManyToOne(() => Tag, tag => tag.productTags)
-    tag!: Tag;
+    tag!: Relation<Tag>;
 }

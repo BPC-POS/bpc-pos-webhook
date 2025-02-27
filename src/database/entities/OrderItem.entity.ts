@@ -1,4 +1,5 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import { Order, Product, ReturnItem } from './index';
 
@@ -20,11 +21,11 @@ export class OrderItem extends CustomBaseEntity {
     meta!: any;
 
     @ManyToOne(() => Order, order => order.orderItems)
-    order!: Order;
+    order!: Relation<Order>;
 
     @ManyToOne(() => Product, product => product.orderItems)
-    product!: Product;
+    product!: Relation<Product>;
 
     @OneToMany(() => ReturnItem, returnItem => returnItem.orderItem)
-    returnItems!: ReturnItem[];
+    returnItems!: Relation<ReturnItem>[];
 }

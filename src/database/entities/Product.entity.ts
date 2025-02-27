@@ -1,4 +1,5 @@
 import { Entity, Column, OneToMany } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { CustomBaseEntity } from '../../common/abstract.entity';
 import {
   ProductTax,
@@ -35,29 +36,29 @@ export class Product extends CustomBaseEntity {
   meta!: any;
 
   @OneToMany(() => ProductTax, (productTax) => productTax.product)
-  productTaxes!: ProductTax[];
+  productTaxes!: Relation<ProductTax>[];
 
   @OneToMany(() => Inventory, (inventory) => inventory.product)
-  inventory!: Inventory[];
+  inventory!: Relation<Inventory>[];
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
-  orderItems!: OrderItem[];
+  orderItems!: Relation<OrderItem>[];
 
   @OneToMany(() => ProductCategoryMapping, (mapping) => mapping.product)
-  productCategoryMappings!: ProductCategoryMapping[];
+  productCategoryMappings!: Relation<ProductCategoryMapping>[];
 
   @OneToMany(() => ProductTag, (productTag) => productTag.product)
-  productTags!: ProductTag[];
+  productTags!: Relation<ProductTag>[];
 
   @OneToMany(() => ProductAttributeValue, (value) => value.product)
-  productAttributeValues!: ProductAttributeValue[];
+  productAttributeValues!: Relation<ProductAttributeValue>[];
 
   @OneToMany(() => ProductVariant, (variant) => variant.product)
-  productVariants!: ProductVariant[];
+  productVariants!: Relation<ProductVariant>[];
 
   @OneToMany(
     () => PurchaseOrderItem,
     (purchaseOrderItem) => purchaseOrderItem.product,
   )
-  purchaseOrderItems!: PurchaseOrderItem[];
+  purchaseOrderItems!: Relation<PurchaseOrderItem>[];
 }
