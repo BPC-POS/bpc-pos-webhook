@@ -21,6 +21,7 @@ import { addTransactionalDataSource } from 'typeorm-transactional';
 import { HealthCheckerModule } from './modules/health-checker/health-checker.module.ts';
 import { ApiConfigService } from './shared/services/api-config.service.ts';
 import { SharedModule } from './shared/shared.module.ts';
+import { HooksModule } from './modules/hooks/hooks.module';
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { SharedModule } from './shared/shared.module.ts';
       inject: [ApiConfigService],
     }),
     HealthCheckerModule,
+    HooksModule,
   ],
   providers: [],
 })
