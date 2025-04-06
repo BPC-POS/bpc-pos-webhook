@@ -22,6 +22,7 @@ import { HealthCheckerModule } from './modules/health-checker/health-checker.mod
 import { ApiConfigService } from './shared/services/api-config.service.ts';
 import { SharedModule } from './shared/shared.module.ts';
 import { HooksModule } from './modules/hooks/hooks.module';
+import { NotificationModule } from './modules/notification/notification.module';
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ import { HooksModule } from './modules/hooks/hooks.module';
     }),
     HealthCheckerModule,
     HooksModule,
+    NotificationModule,
   ],
   providers: [],
 })
